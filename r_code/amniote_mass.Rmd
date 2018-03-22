@@ -9,6 +9,8 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+Library download
+
 ```{r libraries}
 if(!require(ggplot2)) {
   install.packages("ggplot2");
@@ -27,8 +29,14 @@ if(!require(sp)) {
   require(sp)}
 ```
 
+## Downloading data 
 
-Raw data can be found [here](http://www.esapubs.org/archive/ecol/E096/269/#data).
+Raw data originated from: 
+
+  Nathan P. Myhrvold, Elita Baldridge, Benjamin Chan, Dhileep Sivam, Daniel L.     Freeman, and S. K. Morgan Ernest. 2015. An amniote life-history database to      perform comparative analyses with birds, mammals, and reptiles. Ecology          96:3109.http://dx.doi.org/10.1890/15-0846.1
+
+Data can be found [here](http://www.esapubs.org/archive/ecol/E096/269/#data).
+
 ```{r data, include=FALSE}
 amniote_raw <- read_csv("./data/Amniote_Database_Aug_2015.csv")
 ```
