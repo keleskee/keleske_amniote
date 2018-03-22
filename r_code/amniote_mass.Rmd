@@ -9,3 +9,26 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r libraries}
+if(!require(ggplot2)) {
+  install.packages("ggplot2");
+  require(ggplot2)}
+
+if(!require(raster)) {
+  install.packages("raster");
+  require(raster)}
+
+if(!require(readr)) {
+  install.packages("readr");
+  require(readr)}
+
+if(!require(sp)) {
+  install.packages("sp");
+  require(sp)}
+```
+
+
+Raw data can be found [here](http://www.esapubs.org/archive/ecol/E096/269/#data).
+```{r data, include=FALSE}
+amniote_raw <- read_csv("./data/Amniote_Database_Aug_2015.csv")
+```
