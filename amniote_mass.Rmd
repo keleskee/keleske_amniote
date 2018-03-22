@@ -7,11 +7,13 @@ output: pdf_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(error = FALSE)
+knitr::opts_chunk$set(warning = FALSE)
 ```
 
 Library download
 
-```{r libraries}
+```{r libraries, message=FALSE}
 if(!require(ggplot2)) {
   install.packages("ggplot2");
   require(ggplot2)}
@@ -27,6 +29,7 @@ if(!require(readr)) {
 if(!require(sp)) {
   install.packages("sp");
   require(sp)}
+
 ```
 
 ## Downloading data 
@@ -40,3 +43,5 @@ Data can be found [here](http://www.esapubs.org/archive/ecol/E096/269/#data).
 ```{r data, include=FALSE}
 amniote_raw <- read_csv("./data/Amniote_Database_Aug_2015.csv")
 ```
+
+
