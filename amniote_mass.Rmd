@@ -35,7 +35,7 @@ if(!require(sp)) {
 
 ```
 
-### Initial data download -----
+## Initial data download -----
 
 Raw data can be found [here](http://www.esapubs.org/archive/ecol/E096/269/#data). and originated from:
 
@@ -52,34 +52,34 @@ reptilia <- amniote_raw[which(amniote_raw$class == 'Reptilia'),]
 
 This data includes common life history data on species from the class Aves, Mammalia, and Reptilia. 
 
-### Data exploration and visualisation -----
+## Data exploration and visualisation -----
 
 Assuming females of a given species have reached "adult body mass" by the time of sexual maturity, the relationship betwen these two variables can be used to calculate the approximate growth rate from birth to adulthood. 
 
 First, let's explore the relationship between these variables. Since there's such a wide range of sizes within the full amniote data, from the Dwarf Gecko to the Blue Whale, the data have been subset into classes and plotted separately. 
 
-```{r aves adult mass, include=FALSE}
+```{r aves adult mass, eval=TRUE, echo=FALSE}
 ggplot(aves, aes(x=female_maturity_d, y=adult_body_mass_g)) +
   geom_point() + 
   scale_x_continuous(limits = c(0, 1000)) + 
-  labs(title="Aves, Mass v. Maturity", x="Age at Female Maturity (days)",
+  labs(title="Aves", x="Age at Female Maturity (days)",
        y="Adult Body Mass (g)")
 ```
 
-```{r mammalian adult mass, include=FALSE}
+```{r mammalian adult mass,  eval=TRUE, echo=FALSE}
 ggplot(mammalia, aes(x=female_maturity_d, y=adult_body_mass_g)) +
   geom_point() + 
-  labs(title="Mammalia, Mass v. Maturity", x="Age at Female Maturity (days)",
+  labs(title="Mammalia", x="Age at Female Maturity (days)",
        y="Adult Body Mass (g)")
 ```
 
-```{r reptilia adult mass, include=FALSE}
+```{r reptilia adult mass,  eval=TRUE, echo=FALSE}
 ggplot(reptilia, aes(x=female_maturity_d, y=adult_body_mass_g)) +
   geom_point() + 
-  labs(title="Reptilia, Mass v. Maturity", x="Age at Female Maturity (days)",
+  labs(title="Reptilia", x="Age at Female Maturity (days)",
        y="Adult Body Mass (g)")
 ```
 
-### Relationship between variables -----
+## Relationship between variables -----
 
-### Distribution of a variable among groups -----
+## Distribution of a variable among groups -----
