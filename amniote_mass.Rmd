@@ -11,6 +11,9 @@ knitr::opts_chunk$set(error = FALSE)
 knitr::opts_chunk$set(warning = FALSE)
 ```
 
+Species experience tradeoffs for where there energy is spent. In this brief analysis, we will consider one such relationship: energy spent on personal growth and energy spent on the growth of offspring. 
+
+
 ```{r libraries, include=FALSE}
 # Library download
 
@@ -32,17 +35,51 @@ if(!require(sp)) {
 
 ```
 
-## Downloading data 
+### Initial data download -----
 
-Raw data originated from: 
+Raw data can be found [here](http://www.esapubs.org/archive/ecol/E096/269/#data). and originated from:
 
-  Nathan P. Myhrvold, Elita Baldridge, Benjamin Chan, Dhileep Sivam, Daniel L.     Freeman, and S. K. Morgan Ernest. 2015. An amniote life-history database to      perform comparative analyses with birds, mammals, and reptiles. Ecology          96:3109.http://dx.doi.org/10.1890/15-0846.1
-
-Data can be found [here](http://www.esapubs.org/archive/ecol/E096/269/#data).
+> Nathan P. Myhrvold, Elita Baldridge, Benjamin Chan, Dhileep Sivam, Daniel L.     Freeman, and S. K. Morgan Ernest. 2015. An amniote life-history database to      perform comparative analyses with birds, mammals, and reptiles. Ecology          96:3109.http://dx.doi.org/10.1890/15-0846.1
 
 ```{r data, include=FALSE}
 amniote_raw <- read_csv("./data/Amniote_Database_Aug_2015.csv")
+amniote_raw[amniote_raw == -999] <- NA
+
+aves <- amniote_raw[which(amniote_raw$class == 'Aves'),]
+mammalia <- amniote_raw[which(amniote_raw$class == 'Mammalia'),]
+reptilia <- amniote_raw[which(amniote_raw$class == 'Reptilia'),]
 ```
 
+This data includes common life history data on species from the class Aves, Mammalia, and Reptilia. 
 
+### Data exploration and visualisation -----
 
+Assuming females of a given species have reached "adult body mass" by the time of sexual maturity, the relationship betwen these two variables can be used to calculate the approximate growth rate from birth to adulthood. 
+
+First, let's explore the relationship between these variables. Since there's such a wide range of sizes within the full amniote data, from the Dwarf Gecko to the Blue Whale, the data have been subset into classes and plotted separately. 
+
+```{r aves adult mass, include=FALSE}
+ggplot(aves, aes(x=female_maturity_d, y=adult_body_mass_g)) +
+  geom_point() + 
+  scale_x_continuous(limits = c(0, 1000)) + 
+  labs(title="Aves, Mass v. Maturity", x="Age at Female Maturity (days)",
+       y="Adult Body Mass (g)")
+```
+
+```{r mammalian adult mass, include=FALSE}
+ggplot(mammalia, aes(x=female_maturity_d, y=adult_body_mass_g)) +
+  geom_point() + 
+  labs(title="Mammalia, Mass v. Maturity", x="Age at Female Maturity (days)",
+       y="Adult Body Mass (g)")
+```
+
+```{r reptilia adult mass, include=FALSE}
+ggplot(reptilia, aes(x=female_maturity_d, y=adult_body_mass_g)) +
+  geom_point() + 
+  labs(title="Reptilia, Mass v. Maturity", x="Age at Female Maturity (days)",
+       y="Adult Body Mass (g)")
+```
+
+### Relationship between variables -----
+
+### Distribution of a variable among groups -----
