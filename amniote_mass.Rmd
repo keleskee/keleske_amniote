@@ -2,7 +2,7 @@
 title: "Amniote Mass Investment"
 author: "Erin Keleske"
 date: "3/22/2018"
-output: pdf_document
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
