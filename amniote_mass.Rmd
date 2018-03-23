@@ -140,8 +140,6 @@ ggplot(amniote, aes(x=adult_log, y=offspring_log, color=class)) +
   geom_smooth(method='lm')
 ```
 
-## Distribution of a variable among groups -----
-
 To look at this pattern even further, we can investigate different orders within Mammalia and Reptilia individually. 
 
 ```{r mammalian rate comp,  eval=TRUE, echo=FALSE}
@@ -149,7 +147,7 @@ To look at this pattern even further, we can investigate different orders within
 mam_rate <- amniote[which(amniote$class == 'Mammalia'),]
 
 ggplot(mam_rate, aes(x=adult_log, y=offspring_log, color=order)) + 
-  geom_jitter() +
+  geom_smooth(method='lm') +
   labs(x="Adult Growth Rate, log(g/days)", y="Offspring Growth Rate, log(g/g/day)") +
   ggtitle("Mammalian Rate")
 
@@ -160,10 +158,15 @@ ggplot(mam_rate, aes(x=adult_log, y=offspring_log, color=order)) +
 rep_rate <- amniote[which(amniote$class == 'Reptilia'),]
 
 ggplot(rep_rate, aes(x=adult_log, y=offspring_log, color=order)) + 
-  geom_jitter() +
+  geom_smooth(method='lm') +
   labs(x="Adult Growth Rate, log(g/days)", y="Offspring Growth Rate, log(g/g/day)") +
   ggtitle("Reptilian Rate") + 
   geom_smooth(method='lm')
 ```
 
-Regression lines were removed from the Mammalian plot for clarity. 
+## Distribution of a variable among groups -----
+
+
+
+
+
