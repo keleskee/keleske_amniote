@@ -117,15 +117,19 @@ Offspring growth rate (g/g/day) =
 
 
 ```{r, include=FALSE}
-mammalia$adult_rate <- mammalia$adult_body_mass_g/mammalia$female_maturity_d
-reptilia$adult_rate <- reptilia$adult_body_mass_g/reptilia$female_maturity_d
 
-mammalia$baby_rate <- mammalia$birth_or_hatching_weight_g * mammalia$litter_or_clutch_size_n * mammalia$litters_or_clutches_per_y /mammalia$adult_body_mass_g / mammalia$gestation_d
-reptilia$baby_rate <- reptilia$birth_or_hatching_weight_g * reptilia$litter_or_clutch_size_n * reptilia$litters_or_clutches_per_y / reptilia$adult_body_mass_g / reptilia$gestation_d
+amniote <- amniote_raw[,1:5]
+
+amniote$adult_rate <- 
+amniote_raw$adult_body_mass_g/amniote_raw$female_maturity_d
+
+amniote$offspring_rate <- amniote_raw$birth_or_hatching_weight_g * amniote_raw$litter_or_clutch_size_n * amniote_raw$litters_or_clutches_per_y / amniote_raw$adult_body_mass_g / amniote_raw$gestation_d
 
 ```
 
 ```{r mammalian rate comp,  eval=TRUE, echo=FALSE}
+variables <- c{}
+
 ggplot(mammalia, aes(x=adult_rate, y=baby_rate)) +
   geom_point() + 
   labs(title="Mammalia", x="Adult Growth Rate (g/day)",
@@ -133,7 +137,7 @@ ggplot(mammalia, aes(x=adult_rate, y=baby_rate)) +
   geom_smooth(aes(x=adult_rate, y=baby_rate), color="red")
 ```
 
-```{r mammalian rate comp,  eval=TRUE, echo=FALSE}
+```{r reptile rate comp,  eval=TRUE, echo=FALSE}
 ggplot(reptilia, aes(x=adult_rate, y=baby_rate)) +
   geom_point() + 
   labs(title="Reptilia", x="Adult Growth Rate (g/day)",
