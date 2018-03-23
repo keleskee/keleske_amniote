@@ -121,7 +121,7 @@ mammalia$adult_rate <- mammalia$adult_body_mass_g/mammalia$female_maturity_d
 reptilia$adult_rate <- reptilia$adult_body_mass_g/reptilia$female_maturity_d
 
 mammalia$baby_rate <- mammalia$birth_or_hatching_weight_g * mammalia$litter_or_clutch_size_n * mammalia$litters_or_clutches_per_y /mammalia$adult_body_mass_g / mammalia$gestation_d
-reptilia$baby_rate <- reptilia$birth_or_hatching_weight_g * reptilia$litter_or_clutch_size_n * reptilia$litters_or_clutches_per_y / mammalia$adult_body_mass_g / reptilia$gestation_d
+reptilia$baby_rate <- reptilia$birth_or_hatching_weight_g * reptilia$litter_or_clutch_size_n * reptilia$litters_or_clutches_per_y / reptilia$adult_body_mass_g / reptilia$gestation_d
 
 ```
 
