@@ -153,7 +153,7 @@ ggplot(mam_rate, aes(x=adult_log, y=offspring_log, color=order)) +
 
 ```
 
-```{r mammalian rate comp,  eval=TRUE, echo=FALSE}
+```{r reptilian rate comp,  eval=TRUE, echo=FALSE}
 
 rep_rate <- amniote[which(amniote$class == 'Reptilia'),]
 
@@ -166,6 +166,21 @@ ggplot(rep_rate, aes(x=adult_log, y=offspring_log, color=order)) +
 
 ## Distribution of a variable among groups -----
 
+We can create one comparative variable by dividing the two rates. 
+
+adult:offspring investment (g) =
+>  Adult growth rate (g/d) /Offspring relative growth rate (g/g/d)
+
+```{r,  eval=TRUE, echo=FALSE}
+amniote$ratio <- amniote$adult_rate / amniote$offspring_rate
+amniote$log_ratio <- log(amniote$ratio)
+
+amniote_no_aves <- amniote[complete.cases(amniote),]
+
+ggplot(amniote_no_aves, aes(x=amniote_no_aves$class, y=amniote_no_aves$log_ratio)) +
+  geom_boxplot() + 
+  labs(title="Adult:Offspring Ratio by Class", x="Class", y="Adult/Offspring Growth Rate, log(g)") 
+```
 
 
 
