@@ -63,21 +63,44 @@ ggplot(aves, aes(x=female_maturity_d, y=adult_body_mass_g)) +
   geom_point() + 
   scale_x_continuous(limits = c(0, 1000)) + 
   labs(title="Aves", x="Age at Female Maturity (days)",
-       y="Adult Body Mass (g)")
+       y="Adult Body Mass (g)") +
+  geom_smooth(aes(x=female_maturity_d, y=adult_body_mass_g), color="purple")
 ```
 
 ```{r mammalian adult mass,  eval=TRUE, echo=FALSE}
 ggplot(mammalia, aes(x=female_maturity_d, y=adult_body_mass_g)) +
   geom_point() + 
   labs(title="Mammalia", x="Age at Female Maturity (days)",
-       y="Adult Body Mass (g)")
+       y="Adult Body Mass (g)") +
+  geom_smooth(aes(x=female_maturity_d, y=adult_body_mass_g), color="red")
 ```
 
 ```{r reptilia adult mass,  eval=TRUE, echo=FALSE}
 ggplot(reptilia, aes(x=female_maturity_d, y=adult_body_mass_g)) +
   geom_point() + 
   labs(title="Reptilia", x="Age at Female Maturity (days)",
-       y="Adult Body Mass (g)")
+       y="Adult Body Mass (g)") +
+  geom_smooth(aes(x=female_maturity_d, y=adult_body_mass_g), color="blue")
+```
+
+To represent investment in reproduction, we can look at a similar relationship between the weight at birth or hatching divided by gestation period. 
+
+Again, data was subset into classes. However, there is no available data on Aves gestation period. 
+
+```{r mammalian baby mass,  eval=TRUE, echo=FALSE}
+ggplot(mammalia, aes(x=gestation_d, y=birth_or_hatching_weight_g)) +
+  geom_point() + 
+  labs(title="Mammalia", x="Gestation period (days)",
+       y="Weight at Birth/Hatching (g)") +
+  geom_smooth(aes(x=gestation_d, y=birth_or_hatching_weight_g), color="red")
+```
+
+```{r reptilia baby mass,  eval=TRUE, echo=FALSE}
+ggplot(reptilia, aes(x=gestation_d, y=birth_or_hatching_weight_g)) +
+  geom_point() + 
+  labs(title="Reptilia", x="Gestation period (days)",
+       y="Weight at Birth/Hatching (g)") +
+  geom_smooth(aes(x=gestation_d, y=birth_or_hatching_weight_g), color="blue")
 ```
 
 ## Relationship between variables -----
