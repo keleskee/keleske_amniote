@@ -125,24 +125,19 @@ amniote_raw$adult_body_mass_g/amniote_raw$female_maturity_d
 
 amniote$offspring_rate <- amniote_raw$birth_or_hatching_weight_g * amniote_raw$litter_or_clutch_size_n * amniote_raw$litters_or_clutches_per_y / amniote_raw$adult_body_mass_g / amniote_raw$gestation_d
 
+amniote$age <- amniote_raw$female_maturity_d
+
+amniote$offspring_log <- log(amniote$offspring_rate)
+amniote$adult_log <- log(amniote$adult_rate)
+
 ```
 
 ```{r mammalian rate comp,  eval=TRUE, echo=FALSE}
-variables <- c{}
 
-ggplot(mammalia, aes(x=adult_rate, y=baby_rate)) +
-  geom_point() + 
-  labs(title="Mammalia", x="Adult Growth Rate (g/day)",
-       y="Relative Offspring Growth Rate (g/g/day)") +
-  geom_smooth(aes(x=adult_rate, y=baby_rate), color="red")
-```
-
-```{r reptile rate comp,  eval=TRUE, echo=FALSE}
-ggplot(reptilia, aes(x=adult_rate, y=baby_rate)) +
-  geom_point() + 
-  labs(title="Reptilia", x="Adult Growth Rate (g/day)",
-       y="Relative Offspring Growth Rate (g/g/day)") +
-  geom_smooth(aes(x=adult_rate, y=baby_rate), color="blue")
+ggplot(amniote, aes(x=adult_log, y=offspring_log, color=class)) + 
+  geom_jitter() +
+  labs(x="Adult Growth Rate, log(g/days)", y="Offspring Growth Rate, log(g/g/day)") + 
+  geom_smooth(method='lm')
 ```
 
 ## Distribution of a variable among groups -----
