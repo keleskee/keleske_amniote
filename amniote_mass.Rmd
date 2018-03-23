@@ -105,4 +105,21 @@ ggplot(reptilia, aes(x=gestation_d, y=birth_or_hatching_weight_g)) +
 
 ## Relationship between variables -----
 
+Using the two variables from above, I calculated two rates. 
+
+Adult growth rate (g/day) =
+> Adult body mass (g) / Age at female maturity (days)
+
+Offspring growth rate (g/day) = 
+> Birth or hatch weight (g) x Litter or clutch size x Litters or clutches per  year / Gestation period (days) 
+
+```{r, include=FALSE}
+mammalia$adult_rate <- mammalia$adult_body_mass_g/mammalia$female_maturity_d
+reptilia$adult_rate <- reptilia$adult_body_mass_g/reptilia$female_maturity_d
+
+mammalia$baby_rate <- mammalia$birth_or_hatching_weight_g * mammalia$litter_or_clutch_size_n * mammalia$litters_or_clutches_per_y / mammalia$gestation_d
+reptilia$baby_rate <- reptilia$birth_or_hatching_weight_g * reptilia$litter_or_clutch_size_n * reptilia$litters_or_clutches_per_y / reptilia$gestation_d
+
+```
+
 ## Distribution of a variable among groups -----
